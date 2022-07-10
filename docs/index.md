@@ -31,8 +31,27 @@ These slurm parameters use the defq queue (partition), 8 cups need for each task
 ##SBATCH --mail-type=end                                   # email on job end
 ##SBATCH --mail-type=fail                                  # email on job failure
 ```
+These parameters will generate standard output files using the job number with ```.out``` and ```.err``` ammended - thes erae great for trouble shoting.
+
+If you are performing an oppertion that will take substantial RAM e.g. assembly you may wish to define total memory rather than memory per CPU.  For these job replace ```#SBATCH --mem-per-cpu=8000``` for ```#SBATCH --mem=200000```
+
 
 ## Sending Slurm Parameters to outfile
+Including echo commands to send the parameters to the ```.out``` file can be extermely useful to know what parameters you were using. N
+```
+echo "Some Usable Environment Variables:"
+echo "================================="
+echo "hostname=$(hostname)"
+echo \$SLURM_JOB_ID=${SLURM_JOB_ID}
+echo \$SLURM_NTASKS=${SLURM_NTASKS}
+echo \$SLURM_NTASKS_PER_NODE=${SLURM_NTASKS_PER_NODE}
+echo \$SLURM_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK}
+echo \$SLURM_JOB_CPUS_PER_NODE=${SLURM_JOB_CPUS_PER_NODE}
+echo \$SLURM_MEM_PER_CPU=${SLURM_MEM_PER_CPU}
+```
+Note that the defined varibles can be used in the script - so if you program allows you to define threads using paramemeter ```-t``` used you can define this by using ```-t  ${SLURM_JOB_CPUS_PER_NODE}```
+
+If you are using a script that defines total memory replace ```echo \$SLURM_MEM_PER_CPU=${SLURM_MEM_PER_CPU}``` with ```echo \$SLURM_MEM_PER_NODE=${SLURM_MEM_PER_NODE}```
 
 ## Ammeding Script to outfile
 
@@ -44,4 +63,3 @@ These slurm parameters use the defq queue (partition), 8 cups need for each task
 
    [hpc-bios]: <http://hpc.bios.cf.ac.uk/>
  
-
