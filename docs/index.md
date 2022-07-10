@@ -6,7 +6,7 @@ You can find detail decription of the HPC provision and additional instructions 
 
 Below I will try to cover the following point of good practice when putting a slurm script together
 
-- [Slurm Parameters](##Slurm Parameters)
+- [Slurm Parameters](https://github.com/Peter-Kille/slurm_guide/blob/main/docs/index.md#slurm-parameters)
 - Sending Slurm Parameters to outfile
 - Ammeding Script to outfile
 - Defining varibles
